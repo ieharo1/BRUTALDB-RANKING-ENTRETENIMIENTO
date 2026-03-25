@@ -1,0 +1,27 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2 mb-0">Top Canciones</h1>
+  <span class="badge bg-warning text-dark fs-6">{{ songs|length }} tracks</span>
+</div>
+<div class="table-responsive">
+  <table class="table table-dark table-hover align-middle">
+    <thead>
+      <tr><th>#</th><th>Canción</th><th>Artista</th><th>Año</th><th>Puntaje</th></tr>
+    </thead>
+    <tbody>
+      {% for song in songs %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ song.title }}</td>
+          <td>{{ song.artist }}</td>
+          <td>{{ song.year }}</td>
+          <td><span class="badge bg-warning text-dark">{{ song.score }}</span></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Sin canciones disponibles.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

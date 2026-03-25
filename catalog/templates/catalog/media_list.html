@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2 mb-0">{{ section_title }}</h1>
+  <span class="badge bg-warning text-dark fs-6">{{ titles|length }} títulos</span>
+</div>
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+  {% for item in titles %}
+    <div class="col">
+      <div class="card h-100 bg-black text-light border-secondary">
+        {% if item.poster_url %}<img src="{{ item.poster_url }}" class="card-img-top" alt="{{ item.name }}">{% endif %}
+        <div class="card-body d-flex flex-column">
+          <h2 class="h5 card-title">{{ item.name }}</h2>
+          <p class="text-secondary">{{ item.year }} · {{ item.duration }}</p>
+          <p class="card-text">{{ item.synopsis|truncatechars:160 }}</p>
+          <a class="btn btn-outline-warning mt-auto" href="{{ item.get_absolute_url }}">Ver detalle</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>Sin contenido disponible.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-black rounded-3 border border-secondary">
+  <div class="container-fluid py-2">
+    <h1 class="display-5 fw-bold">Tu IMDb en modo bestia</h1>
+    <p class="col-md-10 fs-5 text-secondary">Rankings de películas, canciones, series y documentales con una experiencia 100% responsive en Bootstrap 5.</p>
+    <a class="btn btn-warning btn-lg" href="{% url 'movies_list' %}">Explorar ahora</a>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-12 col-xl-6">
+    <div class="card bg-black text-light border-secondary h-100">
+      <div class="card-header"><h2 class="h4 mb-0">Top Películas</h2></div>
+      <ol class="list-group list-group-numbered list-group-flush">
+        {% for item in top_movies %}
+          <li class="list-group-item bg-black text-light border-secondary d-flex justify-content-between">
+            <a class="link-light text-decoration-none" href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+            <span class="badge bg-warning text-dark">{{ item.score }}</span>
+          </li>
+        {% empty %}<li class="list-group-item bg-black text-light">Sin datos</li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="col-12 col-xl-6">
+    <div class="card bg-black text-light border-secondary h-100">
+      <div class="card-header"><h2 class="h4 mb-0">Top Series</h2></div>
+      <ol class="list-group list-group-numbered list-group-flush">
+        {% for item in top_series %}
+          <li class="list-group-item bg-black text-light border-secondary d-flex justify-content-between">
+            <a class="link-light text-decoration-none" href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+            <span class="badge bg-warning text-dark">{{ item.score }}</span>
+          </li>
+        {% empty %}<li class="list-group-item bg-black text-light">Sin datos</li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="col-12 col-xl-6">
+    <div class="card bg-black text-light border-secondary h-100">
+      <div class="card-header"><h2 class="h4 mb-0">Top Documentales</h2></div>
+      <ol class="list-group list-group-numbered list-group-flush">
+        {% for item in top_documentaries %}
+          <li class="list-group-item bg-black text-light border-secondary d-flex justify-content-between">
+            <a class="link-light text-decoration-none" href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+            <span class="badge bg-warning text-dark">{{ item.score }}</span>
+          </li>
+        {% empty %}<li class="list-group-item bg-black text-light">Sin datos</li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="col-12 col-xl-6">
+    <div class="card bg-black text-light border-secondary h-100">
+      <div class="card-header"><h2 class="h4 mb-0">Top Canciones</h2></div>
+      <ol class="list-group list-group-numbered list-group-flush">
+        {% for song in top_songs %}
+          <li class="list-group-item bg-black text-light border-secondary d-flex justify-content-between">
+            <span>{{ song.title }} - <span class="text-secondary">{{ song.artist }}</span></span>
+            <span class="badge bg-warning text-dark">{{ song.score }}</span>
+          </li>
+        {% empty %}<li class="list-group-item bg-black text-light">Sin datos</li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+</div>
+{% endblock %}
