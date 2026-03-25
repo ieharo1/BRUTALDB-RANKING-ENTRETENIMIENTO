@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<h1 class="h2 mb-4">Resultados para "{{ query }}"</h1>
+<div class="row g-4">
+  <div class="col-12 col-lg-6">
+    <div class="card bg-black border-secondary">
+      <div class="card-header"><h2 class="h5 mb-0">Títulos</h2></div>
+      <ul class="list-group list-group-flush">
+        {% for item in title_results %}
+          <li class="list-group-item bg-black text-light border-secondary"><a class="link-light" href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
+        {% empty %}<li class="list-group-item bg-black text-light border-secondary">Sin coincidencias.</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card bg-black border-secondary">
+      <div class="card-header"><h2 class="h5 mb-0">Canciones</h2></div>
+      <ul class="list-group list-group-flush">
+        {% for song in song_results %}
+          <li class="list-group-item bg-black text-light border-secondary">{{ song.title }} - {{ song.artist }}</li>
+        {% empty %}<li class="list-group-item bg-black text-light border-secondary">Sin coincidencias.</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

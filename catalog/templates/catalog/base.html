@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BrutalDB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'home' %}">🎬 BrutalDB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="{% url 'movies_list' %}">Películas</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'series_list' %}">Series</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'documentaries_list' %}">Documentales</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'songs_list' %}">Canciones</a></li>
+          </ul>
+          <form class="d-flex" action="{% url 'search' %}">
+            <input class="form-control me-2" name="q" type="search" placeholder="Buscar" />
+            <button class="btn btn-warning" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4">
+      {% block content %}{% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

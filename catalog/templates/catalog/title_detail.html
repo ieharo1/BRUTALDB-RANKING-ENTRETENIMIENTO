@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-12 col-lg-4">
+    {% if title.poster_url %}<img src="{{ title.poster_url }}" alt="{{ title.name }}" class="img-fluid rounded border border-secondary" />{% endif %}
+  </div>
+  <div class="col-12 col-lg-8">
+    <h1 class="display-6">{{ title.name }}</h1>
+    <p class="lead text-secondary">{{ title.year }} · {{ title.get_media_type_display }} · {{ title.duration }}</p>
+    <p>{{ title.synopsis }}</p>
+    <div class="d-flex gap-2 mb-3">
+      <span class="badge bg-warning text-dark fs-6">⭐ {{ title.score }}</span>
+      {% if title.trailer_url %}<a class="btn btn-outline-light btn-sm" href="{{ title.trailer_url }}" target="_blank" rel="noopener">Ver trailer</a>{% endif %}
+    </div>
+    <h2 class="h5">Reparto</h2>
+    <ul class="list-group list-group-flush">
+      {% for person in title.cast.all %}
+        <li class="list-group-item bg-dark text-light border-secondary">{{ person.name }} <span class="text-secondary">{{ person.role }}</span></li>
+      {% empty %}
+        <li class="list-group-item bg-dark text-light border-secondary">Sin reparto cargado.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
